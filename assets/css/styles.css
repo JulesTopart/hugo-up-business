@@ -9,12 +9,15 @@
   html {
     font-family: 'Inter', system-ui, sans-serif;
     color: #0000009c;
+    color: #5d57a3;
+    color: #00ff66;
+    color: #dcf0ff;
   }
 }
 
 @theme {
-  --color-primary: {{ (default "#5d57a3	" site.Params.colors.primary) }};
-  --color-secondary: {{ (default "#d33a77	" site.Params.colors.secondary) }};
+  --color-primary: {{ (default "#1f324c	" site.Params.colors.primary) }};
+  --color-secondary: {{ (default "#00ff66	" site.Params.colors.secondary) }};
   --color-tertiary: {{ (default "#dcf0ff" site.Params.colors.tertiary) }};
 }
 
