@@ -1,86 +1,150 @@
 {{ define "main" }}
 
+{{ $contact := site.Data.contact }}
+
+{{ if $contact.enable }}
+
 <section class="py-24">
   <div class="container mx-auto px-4">
 
-    <!-- HERO -->
+    <!-- ================= HERO ================= -->
     <div class="max-w-3xl mx-auto text-center mb-16">
+
       <h1 class="text-primary text-5xl font-bold mb-6">
-        Start Your Project
+        {{ $contact.title | markdownify }}
       </h1>
 
       <p class="text-lg opacity-80">
-        Tell us about your system, prototype or technical challenge.
-        Runeworks collaborates with startups, laboratories and industrial
-        teams to turn complex ideas into working machines.
+        {{ $contact.text }}
       </p>
+
     </div>
 
-    <!-- EXPECTATIONS -->
-    <div class="max-w-2xl mx-auto mb-16 text-center opacity-80">
-      <p>
-        Typical engagements include architecture studies,
-        prototype development and advanced debugging.
-        Projects usually begin with a short technical discussion.
-      </p>
-    </div>
 
-    <!-- FORM -->
+    <!-- ================= FORM CARD ================= -->
     <div class="max-w-3xl mx-auto bg-tertiary rounded-4xl p-10 shadow-lg">
 
-      <form class="space-y-6">
+      <form
+        action="{{ $contact.form.action }}"
+        method="POST"
+        class="space-y-6">
 
-        <input type="text"
+        <!-- Hidden Formspree fields -->
+        <input type="hidden"
+               name="_subject"
+               value="{{ $contact.form.subject }}">
+
+        <input type="hidden"
+               name="_redirect"
+               value="{{ $contact.form.redirect }}">
+
+
+        <!-- Name -->
+        <input
+          type="text"
+          name="name"
           placeholder="Name"
           required
           class="w-full rounded-xl px-4 py-3 border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-primary">
 
-        <input type="email"
+
+        <!-- Email -->
+        <input
+          type="email"
+          name="email"
           placeholder="Email"
           required
           class="w-full rounded-xl px-4 py-3 border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-primary">
 
+
+        <!-- Company -->
+        <input
+          type="text"
+          name="company"
+          placeholder="Company / Organization"
+          class="w-full rounded-xl px-4 py-3 border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-primary">
+
+
+        <!-- Project -->
         <textarea
-          placeholder="Describe your project"
+          name="project"
           rows="6"
+          placeholder="Describe your project or technical challenge"
+          required
           class="w-full rounded-xl px-4 py-3 border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
 
-        <select class="w-full rounded-xl px-4 py-3 border border-neutral-300">
-          <option>Type of engagement</option>
-          <option>Consulting</option>
-          <option>Architecture & Roadmap</option>
-          <option>Prototype Development</option>
-          <option>Debugging</option>
+
+        <!-- Engagement -->
+        <select
+          name="engagement"
+          class="w-full rounded-xl px-4 py-3 border border-neutral-300">
+
+          <option value="">Type of engagement</option>
+
+          {{ range $contact.engagements }}
+            <option value="{{ . }}">{{ . }}</option>
+          {{ end }}
+
         </select>
 
-        <select class="w-full rounded-xl px-4 py-3 border border-neutral-300">
-          <option>Estimated budget</option>
-          <option>&lt; 5k€</option>
-          <option>5k–15k€</option>
-          <option>15k–50k€</option>
-          <option>50k€+</option>
+
+        <!-- Timeline -->
+        <select
+          name="timeline"
+          class="w-full rounded-xl px-4 py-3 border border-neutral-300">
+
+          <option value="">Desired timeline</option>
+
+          {{ range $contact.timeline }}
+            <option value="{{ . }}">{{ . }}</option>
+          {{ end }}
+
         </select>
 
+
+        <!-- Budget -->
+        <select
+          name="budget"
+          class="w-full rounded-xl px-4 py-3 border border-neutral-300">
+
+          <option value="">Estimated budget</option>
+
+          {{ range $contact.budgets }}
+            <option value="{{ . }}">{{ . }}</option>
+          {{ end }}
+
+        </select>
+
+
+        <!-- Submit -->
         <button
           type="submit"
           class="w-full bg-primary text-white font-semibold py-4 rounded-xl hover:opacity-90 transition">
+
           Discuss My Project →
+
         </button>
 
       </form>
 
     </div>
 
-    <!-- DIRECT CONTACT -->
+
+    <!-- ================= DIRECT CONTACT ================= -->
     <div class="text-center mt-12 opacity-70">
+
       Prefer direct contact?<br>
-      <a href="mailto:hello@runeworks.engineering"
+
+      <a href="mailto:{{ $contact.email }}"
          class="text-primary font-medium">
-        hello@runeworks.engineering
+         {{ $contact.email }}
       </a>
+
     </div>
 
   </div>
 </section>
+
+{{ end }}
 
 {{ end }}
