@@ -1,59 +1,85 @@
-<div class="
-  bg-tertiary
-  rounded-4xl
-  overflow-hidden
-  flex flex-col
-  justify-between
-  transition
-  hover:-translate-y-1
-  hover:shadow-xl
-">
-
-  {{ with .image }}
-    <div class="overflow-hidden">
-      {{ partial "utilities/image"
-        (dict
-          "src" .
-          "class" "w-full h-52 object-cover transition duration-700 hover:scale-105"
-        )
-      }}
-    </div>
-  {{ end }}
-
-  <div class="px-8 py-10 flex flex-col flex-grow">
+<section class="py-20">
+  <div class="container mx-auto px-4">
 
     {{ with .title }}
-      <h2 class="text-primary mb-4 text-center text-2xl font-semibold">
+      <h1 class="text-primary mb-6 text-center text-5xl font-bold">
         {{ . }}
-      </h2>
+      </h1>
     {{ end }}
 
     {{ with .text }}
-      <p class="mb-6 text-center opacity-90">
+      <p class="mx-auto mb-16 text-center xl:max-w-[55%]">
         {{ . }}
       </p>
     {{ end }}
 
-    {{ with .highlights }}
-      <ul class="mb-8 space-y-2 text-sm opacity-80">
-        {{ range . }}
-          <li>• {{ . }}</li>
+    {{ if .cards }}
+      <div class="grid gap-10 lg:grid-cols-3 items-stretch">
+
+        {{ range .cards }}
+          <div class="
+            bg-tertiary
+            rounded-4xl
+            overflow-hidden
+            flex flex-col
+            justify-between
+            transition
+            hover:-translate-y-1
+            hover:shadow-xl
+          ">
+
+            {{ with .image }}
+              <div class="overflow-hidden">
+                {{ partial "utilities/image"
+                  (dict
+                    "src" .
+                    "class" "w-full h-52 object-cover transition duration-700 hover:scale-105"
+                  )
+                }}
+              </div>
+            {{ end }}
+
+            <div class="px-8 py-10 flex flex-col flex-grow">
+
+              {{ with .title }}
+                <h2 class="text-primary mb-4 text-center text-2xl font-semibold">
+                  {{ . }}
+                </h2>
+              {{ end }}
+
+              {{ with .text }}
+                <p class="mb-6 text-center opacity-90">
+                  {{ . }}
+                </p>
+              {{ end }}
+
+              {{ with .highlights }}
+                <ul class="mb-8 space-y-2 text-sm opacity-80">
+                  {{ range . }}
+                    <li>• {{ . }}</li>
+                  {{ end }}
+                </ul>
+              {{ end }}
+
+              {{ with .pricing }}
+                <p class="mt-auto mb-6 text-center text-sm font-medium text-primary">
+                  {{ . }}
+                </p>
+              {{ end }}
+
+              {{ with .button }}
+                <div class="flex justify-center">
+                  {{ partial "components/button/outline"
+                    (dict "label" .label "href" .link) }}
+                </div>
+              {{ end }}
+
+            </div>
+          </div>
         {{ end }}
-      </ul>
-    {{ end }}
 
-    {{ with .pricing }}
-      <p class="mt-auto mb-6 text-center text-sm font-medium text-primary">
-        {{ . }}
-      </p>
-    {{ end }}
-
-    {{ with .button }}
-      <div class="flex justify-center">
-        {{ partial "components/button/outline"
-          (dict "label" .label "href" .link) }}
       </div>
     {{ end }}
 
   </div>
-</div>
+</section>
