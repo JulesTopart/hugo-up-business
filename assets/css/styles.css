@@ -21,3 +21,7 @@
 body {
   @apply antialiased;
 }
+
+.rounded-4xl {
+    border-radius: 0.6rem !important;
+}
