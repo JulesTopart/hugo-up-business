@@ -1,3 +1,3 @@
-module github.com/JulesTopart/hugo-up-business
+module runeworks-theme
 
 go 1.24.0
