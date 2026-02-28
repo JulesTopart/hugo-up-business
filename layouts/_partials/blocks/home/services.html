@@ -17,15 +17,13 @@
       <div class="grid gap-10 lg:grid-cols-3 items-stretch">
 
         {{ range .cards }}
-          <div class="
-            bg-tertiary
-            rounded-4xl
-            overflow-hidden
-            flex flex-col
-            justify-between
-            transition
-            hover:-translate-y-1
-            hover:shadow-xl
+          <a href="{{ .link | default "#contact" }}" 
+          class="
+          block 
+          bg-tertiary 
+          rounded-4xl 
+          overflow-hidden 
+          transition hover:-translate-y-1 hover:shadow-xl
           ">
 
             {{ with .image }}
@@ -75,7 +73,7 @@
               {{ end }}
 
             </div>
-          </div>
+          </a>
         {{ end }}
 
       </div>
