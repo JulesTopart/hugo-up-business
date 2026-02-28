@@ -17,14 +17,18 @@
       <div class="grid gap-10 lg:grid-cols-3 items-stretch">
 
         {{ range .cards }}
-          <a href="{{ .link | default "#contact" }}" 
-          class="
-          block 
-          bg-tertiary 
-          rounded-4xl 
-          overflow-hidden 
-          transition hover:-translate-y-1 hover:shadow-xl
-          ">
+          <a href="{{ .link | default "#contact" }}"
+            class="
+              block
+              h-full
+              bg-tertiary
+              rounded-4xl
+              overflow-hidden
+              flex flex-col
+              transition
+              hover:-translate-y-1
+              hover:shadow-xl
+            ">
 
             {{ with .image }}
               <div class="overflow-hidden">
@@ -37,6 +41,7 @@
               </div>
             {{ end }}
 
+            <!-- CONTENT -->
             <div class="px-8 py-10 flex flex-col flex-grow">
 
               {{ with .title }}
@@ -59,20 +64,26 @@
                 </ul>
               {{ end }}
 
-              {{ with .pricing }}
-                <p class="mt-auto mb-6 text-center text-sm font-medium text-primary">
-                  {{ . }}
-                </p>
-              {{ end }}
+              <!-- FOOTER (LOCKED POSITION) -->
+              <div class="mt-auto pt-6 border-t border-white/10">
 
-              {{ with .button }}
-                <div class="flex justify-center">
-                  {{ partial "components/button/outline"
-                    (dict "label" .label "href" .link) }}
-                </div>
-              {{ end }}
+                {{ with .pricing }}
+                  <p class="mb-6 text-center text-sm font-medium text-primary">
+                    {{ . }}
+                  </p>
+                {{ end }}
+
+                {{ with .button }}
+                  <div class="flex justify-center">
+                    {{ partial "components/button/outline"
+                      (dict "label" .label "href" .link) }}
+                  </div>
+                {{ end }}
+
+              </div>
 
             </div>
+
           </a>
         {{ end }}
 
