@@ -1,16 +1,14 @@
-{{ $exp := .Site.Data.home.brands }}
 
-{{ if $exp.enable }}
 <section class="py-20">
   <div class="container mx-auto px-4 text-center">
 
     <h2 class="text-primary text-3xl font-semibold mb-10">
-      {{ $exp.title }}
+      {{ .title }}
     </h2>
 
     <div class="flex flex-wrap justify-center gap-4">
 
-      {{ range $exp.chips }}
+      {{ range .chips }}
         <span
           class="
             px-5 py-2
@@ -30,4 +28,3 @@
 
   </div>
 </section>
-{{ end }}
