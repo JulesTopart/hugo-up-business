@@ -50,7 +50,9 @@
     {{ end }}
 
     {{ with resources.Get "site.webmanifest" }}
-      <link rel="manifest" href="{{ .Permalink }}" />
+      {{ with resources.ExecuteAsTemplate "site.webmanifest" $ . }}
+        <link rel="manifest" href="{{ .RelPermalink }}">
+      {{ end }}
     {{ end }}
 
     {{ with resources.Get "safari-pinned-tab.svg" }}
