@@ -1,5 +1,5 @@
 {{ define "main" }}
-{{ if $contact.enable }}
+{{ if contact.enable }}
 
 <section class="py-16">
 <div class="container mx-auto px-4">
@@ -8,11 +8,11 @@
     <div class="max-w-3xl mx-auto text-center mb-16">
 
       <h1 class="text-primary text-5xl font-bold mb-6">
-        {{ $contact.title | markdownify }}
+        {{ contact.title | markdownify }}
       </h1>
 
       <p class="text-lg">
-        {{ $contact.text }}
+        {{ contact.text }}
       </p>
 
     </div>
@@ -22,18 +22,18 @@
     <div class="max-w-3xl mx-auto bg-tertiary rounded-4xl p-10 shadow-lg">
 
       <form
-        action="{{ $contact.form.action }}"
+        action="{{ contact.form.action }}"
         method="POST"
         class="space-y-6">
 
         <!-- Hidden Formspree fields -->
         <input type="hidden"
                name="_subject"
-               value="{{ $contact.form.subject }}">
+               value="{{ contact.form.subject }}">
 
         <input type="hidden"
                name="_redirect"
-               value="{{ $contact.form.redirect }}">
+               value="{{ contact.form.redirect }}">
 
 
         <!-- Name -->
@@ -84,7 +84,7 @@
 
           <option value="">Type of engagement</option>
 
-          {{ range $contact.engagements }}
+          {{ range contact.engagements }}
             <option value="{{ . }}">{{ . }}</option>
           {{ end }}
 
@@ -98,7 +98,7 @@
 
           <option value="">Desired timeline</option>
 
-          {{ range $contact.timeline }}
+          {{ range contact.timeline }}
             <option value="{{ . }}">{{ . }}</option>
           {{ end }}
 
@@ -112,7 +112,7 @@
 
           <option value="">Estimated budget</option>
 
-          {{ range $contact.budgets }}
+          {{ range contact.budgets }}
             <option value="{{ . }}">{{ . }}</option>
           {{ end }}
 
@@ -133,14 +133,13 @@
     </div>
 
 
-    <!-- ================= DIRECT CONTACT ================= -->
     <div class="text-center mt-12 opacity-70">
 
       Prefer direct contact?<br>
 
-      <a href="mailto:{{ $contact.email }}"
+      <a href="mailto:{{ contact.email }}"
          class="text-primary font-medium">
-         {{ $contact.email }}
+         {{ contact.email }}
       </a>
 
     </div>
